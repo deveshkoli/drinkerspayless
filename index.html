@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPL</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="maincontainer">
+
+        <div class="thecard">
+
+            <div class="valuescard">
+                <h1>Fill details</h1>
+                <div class="inputfields">
+                    <div class="drinkers">
+                        <label for="drinkers">How many drinkers?</label>
+                        <input id="drinkers" type="number" name="drinkers" placeholder="Total Alcoholics!"/>
+                    </div>
+                    <div class="nondrinkers">
+                        <label for="nondrinkers">How many non-drinkers?</label>
+                        <input id="nondrinkers" type="number" name="nondrinkers" placeholder="Total Non-Alcoholic(s)"/>
+                    </div>
+                    <div class="totalbill">
+                        <label for="totalbill">Total Bill</label>
+                        <input id="totalbill" type="number" name="totalbill" placeholder="Total Bill"/>
+                    </div>
+                    <div class="servicecharge">  
+                        <label for="servicecharge">Tip / Service Charge(if any) Paid</label>
+                        <input id="servicecharge" type="number" name="servicecharge" placeholder="Tip / Service Charge"/>
+                    </div>
+                    <div class="taxes">                   
+                        <div class="cgst">
+                            <span>CGST @</span>
+                            <input type="number" name="cgst" placeholder="0">
+                            <span>%</span>
+                            <input id="cgst" type="number" name="cgst" placeholder="CGST"/>
+                        </div>
+                        <div class="sgst">
+                            <span>sgst @</span>
+                            <input type="number" name="sgst" placeholder="0">
+                            <span>%</span>
+                            <input id="sgst" type="number" name="sgst" placeholder="SGST"/>
+                        </div>
+                        <div class="VAT">
+                            <span>VAT @</span>
+                            <input type="number" name="VAT" placeholder="0">
+                            <span>%</span>
+                            <input id="VAT" type="number" name="VAT" placeholder="VAT"/>
+                        </div>
+                    </div>
+                    
+                </div>
+                <button>Submit</button>
+            </div>
+
+            <div class="splitcard">
+                <h1>Back of Card</h1>
+                <p>Your use of this site is subject to the terms and conditions governing this and all transactions.</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
