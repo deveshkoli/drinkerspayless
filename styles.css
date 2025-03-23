@@ -6,7 +6,7 @@
     align-items: center;
 }
 body{
-    background-image: url(/images/delicious-negroni-drink-with-grapefruit.jpg);
+    background-image: url(./images/delicious-negroni-drink-with-grapefruit.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
