@@ -33,7 +33,7 @@ $(document).ready(function() {
     // Individual shares
     var perNonDrinker = foodTotal / (drinkers + nondrinkers);
     var perDrinker    = perNonDrinker + (drinkers > 0 ? drinksTotal / drinkers : 0);
-    var perMocktailer = perNonDrinker + (mocktailers > 0 ? mocktailsTotal / mocktailers : 0);
+    var perMocktailer = (mocktailers > 0 ? (mocktailsTotal / mocktailers) + perNonDrinker : 0);
   
     // Results
     var html = '<p><strong>Total Paid:</strong> ₹' + totalPaid.toFixed(2) + '</p>';
