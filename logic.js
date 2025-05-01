@@ -1,21 +1,52 @@
-
-function calcbill(){
-    var totalbill = $('#totalbill').val();
-    var drinkers = $('#drinkers').val();
-    var drinksbill = $('#drinksbill').val();
-    var nondrinkers = $('#nondrinkers').val();
-    var totalbill = $('#totalbill').val();
-    var servicecharge = $('#servicecharge').val();
-    var cgst = $('#cgst').val();
-    var sgst = $('#sgst').val();
-    var vat = $('#VAT').val();
-
-    console.log("Total Bill:", totalbill);
-    console.log("Drinkers:", drinkers);
-    console.log("Drinks Bill:", drinksbill);
-    console.log("Non-Drinkers:", nondrinkers);
-    console.log("Service Charge:", servicecharge);
-    console.log("CGST:", cgst);
-    console.log("SGST:", sgst);
-    console.log("VAT:", vat);
-}
+$(document).ready(function() {
+    $('#billForm').on('submit keypress', function(e) {
+      if (e.type === 'submit' || (e.type === 'keypress' && e.which === 13)) {
+        e.preventDefault();
+        calcbill();
+      }
+    });
+  });
+  
+  function calcbill() {
+    // Inputs
+    var totalPaid     = parseFloat($('#totalbill').val());
+    var drinkers      = parseInt($('#drinkers').val(), 10);
+    var drinksbill    = parseFloat($('#drinksbill').val());
+    var nondrinkers   = parseInt($('#nondrinkers').val(), 10);
+    var mocktailsbill = parseFloat($('#mocktailsbill').val());
+    var mocktailers   = parseInt($('#mocktailers').val(), 10);
+    var serviceRate   = parseFloat($('#servicecharge').val()) / 100;
+    var cgstRate      = parseFloat($('#cgst').val()) / 100;
+    var sgstRate      = parseFloat($('#sgst').val()) / 100;
+    var vatRate       = parseFloat($('#VAT').val()) / 100;
+  
+    // Tax multipliers
+    var drinksMul    = 1 + vatRate;
+    var foodMul      = 1 + cgstRate + sgstRate;
+    var serviceMul   = 1 + serviceRate;
+  
+    // Calculate totals
+    var drinksTotal    = drinksbill * drinksMul * serviceMul;
+    var mocktailsTotal = mocktailsbill * foodMul * serviceMul;
+    // Food base is whatever remains before tax & service
+    var foodBase       = (totalPaid / serviceMul) - (drinksbill * drinksMul) - (mocktailsbill * foodMul);
+    var foodTotal      = foodBase * foodMul * serviceMul;
+  
+    // Individual shares
+    var perNonDrinker = foodTotal / (drinkers + nondrinkers);
+    var perDrinker    = perNonDrinker + (drinkers > 0 ? drinksTotal / drinkers : 0);
+    var perMocktailer = perNonDrinker + (mocktailers > 0 ? mocktailsTotal / mocktailers : 0);
+  
+    // Results
+    var html = '<p><strong>Total Paid:</strong> ₹' + totalPaid.toFixed(2) + '</p>';
+    html += '<p><strong>Drinks Total (incl. VAT & Service):</strong> ₹' + drinksTotal.toFixed(2) + '</p>';
+    html += '<p><strong>Mocktails Total (incl. GST & Service):</strong> ₹' + mocktailsTotal.toFixed(2) + '</p>';
+    html += '<p><strong>Food Total (incl. GST & Service):</strong> ₹' + foodTotal.toFixed(2) + '</p>';
+    html += '<hr>';
+    html += '<p><strong>Each Non-Drinker Pays:</strong> ₹' + perNonDrinker.toFixed(2) + '</p>';
+    html += '<p><strong>Each Drinker Pays:</strong> ₹' + perDrinker.toFixed(2) + '</p>';
+    html += '<p><strong>Each Mocktail Consumer Pays:</strong> ₹' + perMocktailer.toFixed(2) + '</p>';
+  
+    $('#results').html(html);
+  }
+  

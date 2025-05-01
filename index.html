@@ -1,80 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DPL</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="./logic.js" type="text/javascript"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-  integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
-  crossorigin="anonymous"></script>
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bill Split Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+  <script src="logic.js" defer></script>
 </head>
-
 <body>
-    <div class="maincontainer">
+  <div class="container">
+    <h1>Bill Split Calculator</h1>
+    <form id="billForm">
+      <label for="totalbill">Total Bill (incl. service & taxes):</label>
+      <input type="number" id="totalbill" placeholder="₹ Grand Total" step="0.01" required>
 
-        <div class="thecard">
+      <label for="drinkers">Number of Drinkers:</label>
+      <input type="number" id="drinkers" placeholder="Count of drinkers" step="1" required>
 
-            <div class="valuescard">
-                <h1>Fill details</h1>
-                <div class="inputfields">
-                    <div class="drinkers">
-                        <label for="drinkers">How many drinkers?</label>
-                        <input id="drinkers" type="number" name="drinkers" placeholder="Total Alcoholics!"/>
-                    </div>
-                    <div class="nondrinkers">
-                        <label for="nondrinkers">How many non-drinkers?</label>
-                        <input id="nondrinkers" type="number" name="nondrinkers" placeholder="Total Non-Alcoholic(s)"/>
-                    </div>
-                    <div class="totalbill">
-                        <label for="totalbill">Total Bill</label>
-                        <input id="totalbill" type="number" name="totalbill" placeholder="Total Bill"/>
-                    </div>
-                    <div class="drinksbill">
-                        <label for="drinksbill">Drinks Bill</label>
-                        <input id="drinksbill" type="number" name="drinksbill" placeholder="Drinks Bill"/>
-                    </div>
-                    <div class="servicecharge">  
-                        <label for="servicecharge">Tip / Service Charge(if any) Paid</label>
-                        <input id="servicecharge" type="number" name="servicecharge" placeholder="Tip / Service Charge"/>
-                    </div>
-                    <div class="taxes">                   
-                        <div class="cgst">
-                            <span>CGST @</span>
-                            <input type="number" name="cgst" placeholder="0">
-                            <span>%</span>
-                            <input id="cgst" type="number" name="cgst" placeholder="CGST"/>
-                        </div>
-                        <div class="sgst">
-                            <span>sgst @</span>
-                            <input type="number" name="sgst" placeholder="0">
-                            <span>%</span>
-                            <input id="sgst" type="number" name="sgst" placeholder="SGST"/>
-                        </div>
-                        <div class="VAT">
-                            <span>VAT @</span>
-                            <input type="number" name="VAT" placeholder="0">
-                            <span>%</span>
-                            <input id="VAT" type="number" name="VAT" placeholder="VAT"/>
-                        </div>
-                    </div>
-                    
-                </div>
-                <button onclick="calcbill()">Submit</button>
-            </div>
+      <label for="drinksbill">Drinks Bill (base amount):</label>
+      <input type="number" id="drinksbill" placeholder="₹ Drinks Subtotal" step="0.01" required>
 
-            <div class="splitcard">
-                <h1>Back of Card</h1>
-                <p>Your use of this site is subject to the terms and conditions governing this and all transactions.</p>
-            </div>
+      <label for="nondrinkers">Number of Non-Drinkers:</label>
+      <input type="number" id="nondrinkers" placeholder="Count of non-drinkers" step="1" required>
 
-        </div>
-    </div>
+      <label for="mocktailsbill">Mocktails Bill (base amount):</label>
+      <input type="number" id="mocktailsbill" placeholder="₹ Mocktails Subtotal" step="0.01" required>
 
+      <label for="mocktailers">Mocktail Consumers:</label>
+      <input type="number" id="mocktailers" placeholder="Count who had mocktails" step="1" required>
+
+      <label for="servicecharge">Service Charge (%):</label>
+      <input type="number" id="servicecharge" placeholder="e.g., 5" step="0.01" required>
+
+      <label for="cgst">CGST (% on food & mocktails):</label>
+      <input type="number" id="cgst" placeholder="e.g., 2.5" step="0.01" required>
+
+      <label for="sgst">SGST (% on food & mocktails):</label>
+      <input type="number" id="sgst" placeholder="e.g., 2.5" step="0.01" required>
+
+      <label for="VAT">VAT (% on drinks):</label>
+      <input type="number" id="VAT" placeholder="e.g., 5" step="0.01" required>
+
+      <button type="submit">Calculate</button>
+    </form>
+    <div id="results"></div>
+  </div>
 </body>
-
 </html>
