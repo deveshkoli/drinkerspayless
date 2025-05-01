@@ -23,7 +23,6 @@ $(document).ready(function() {
     // Tax multipliers
     var drinksMul  = parseFloat((1 + vatRate + serviceRate).toFixed(2));
     var foodMul    = parseFloat((1 + cgstRate + sgstRate + serviceRate).toFixed(2));
-    var serviceMul = parseFloat((1 + serviceRate).toFixed(2));
 
     // Calculate totals
     var drinksTotal    = drinksbill * drinksMul;
