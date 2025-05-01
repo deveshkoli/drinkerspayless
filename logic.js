@@ -42,9 +42,9 @@ $(document).ready(function() {
     html += '<p><strong>Mocktails Total (incl. GST & Service):</strong> ₹' + mocktailsTotal.toFixed(2) + '</p>';
     html += '<p><strong>Food Total (incl. GST & Service):</strong> ₹' + foodTotal.toFixed(2) + '</p>';
     html += '<hr>';
-    html += '<p><strong>Each Non-Drinker Pays:</strong> ₹' + perNonDrinker.toFixed(2) + '</p>';
-    html += '<p><strong>Each Drinker Pays:</strong> ₹' + perDrinker.toFixed(2) + '</p>';
-    html += '<p><strong>Each Mocktail Consumer Pays:</strong> ₹' + perMocktailer.toFixed(2) + '</p>';
+    html += '<p><strong>Each Non-Drinker Pays(For Food Only):</strong> ₹' + perNonDrinker.toFixed(2) + '</p>';
+    html += '<p><strong>Each Drinker Pays with Food:</strong> ₹' + perDrinker.toFixed(2) + '</p>';
+    html += '<p><strong>Each Mocktail Consumer Pays with Food:</strong> ₹' + perMocktailer.toFixed(2) + '</p>';
   
     $('#results').html(html);
   }
