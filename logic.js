@@ -21,17 +21,16 @@ $(document).ready(function() {
     var vatRate       = parseFloat($('#VAT').val()) / 100;
   
     // Tax multipliers
-    var drinksMul    = 1 + vatRate;
-    var foodMul      = 1 + cgstRate + sgstRate;
-    var serviceMul   = 1 + serviceRate;
-  
+    var drinksMul  = parseFloat((1 + vatRate + serviceRate).toFixed(2));
+    var foodMul    = parseFloat((1 + cgstRate + sgstRate + serviceRate).toFixed(2));
+    var serviceMul = parseFloat((1 + serviceRate).toFixed(2));
+
     // Calculate totals
-    var drinksTotal    = drinksbill * drinksMul * serviceMul;
-    var mocktailsTotal = mocktailsbill * foodMul * serviceMul;
-    // Food base is whatever remains before tax & service
-    var foodBase       = (totalPaid / serviceMul) - (drinksbill * drinksMul) - (mocktailsbill * foodMul);
-    var foodTotal      = foodBase * foodMul * serviceMul;
-  
+    var drinksTotal    = drinksbill * drinksMul;
+    var mocktailsTotal = mocktailsbill * foodMul;
+     // Recalculate food base more accurately
+    var foodTotal       = totalPaid - drinksTotal - mocktailsTotal;
+
     // Individual shares
     var perNonDrinker = foodTotal / (drinkers + nondrinkers);
     var perDrinker    = perNonDrinker + (drinkers > 0 ? drinksTotal / drinkers : 0);
